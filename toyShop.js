@@ -17,56 +17,35 @@ function toyShop(input){
 
     let totalPrice = puzzleQty*puzzlePrice + dollQty*dollPrice + bearQty*bearPrice + minionQty*minionPrice + truckQty*truckPrice;
     
-    let revenue;
-
-    let surplus;
-    let surplusCheck = surplus*100;
-    let surplusString;
-
-    let shortage;
-    let shortageCheck = shortage*100;
-    let shortageString;
 
     if(totalQty >= 50){
         totalPrice = totalPrice*0.75;
     }
 
-    revenue = totalPrice*0.9;
+    let revenue = totalPrice*0.9;
 
-    if(tripPrice > revenue){
-        shortage = tripPrice - revenue;
+    let cashAfterTrip = revenue - tripPrice;
 
-        shortage = shortage.toFixed(2);
-        shortageString = shortage.toString();
+    if(cashAfterTrip >= 0){
+        let resultString = cashAfterTrip.toFixed(2);
 
-        //if((shortage*100) % 10 == 0){
-        //    shortageString = shortageString + "0"
-        //}
+        console.log("Yes! " + resultString + " lv left.")
+    }else{//cashAfterTrip < 0
+        cashAfterTrip = cashAfterTrip*(-1);
 
-        console.log("Not enough money! " + shortageString + " lv needed.");
+        let resultString = cashAfterTrip.toFixed(2);
 
-    }else{
-        surplus = revenue - tripPrice;
-        
-        surplus = surplus.toFixed(2);
-
-        surplusString = surplus.toString();
-
-        if((surplus*100) % 10 == 0){
-            surplusString = surplusString + "0"
-        }
-
-        console.log("Yes! " + surplusString + " lv left.");
+        console.log("Not enough money! " + resultString + " lv needed.");
     }
+
 
 
 }
 
-toyShop(["40.8",
-"20",
-"25",
-"30",
-"50",
-"10"])
-
+toyShop(["320",
+"8",
+"2",
+"5",
+"5",
+"1"])
 ;
